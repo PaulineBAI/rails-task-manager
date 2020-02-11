@@ -1,0 +1,29 @@
+<div class="container my-3">
+  <div class="form pb-5 mb-3 border-bottom">
+    <% if task.title.nil? %>
+      <h1>New task</h1>
+    <% else %>
+      <h1>Edit task</h1>
+    <% end %>
+
+    <%= form_for(task) do |f| %>
+      <div class="form-group w-50">
+        <%= f.label :title, class: 'font-weight-bold' %>
+        <%= f.text_field :title, class: 'form-control' %>
+      </div>
+
+      <div class="form-group w-50">
+        <%= f.label :details, class: 'font-weight-bold' %>
+        <%= f.text_area :details, class: 'form-control' %>
+      </div>
+
+      <% unless task.title.nil? %>
+        <%= f.check_box :completed, class: 'mr-2' %><%= f.label :completed %>
+      <% end %>
+      <p><%= f.submit class: 'btn btn-primary' %></p>
+    <% end %>
+  </div>
+
+  <i class="fas fa-undo-alt mr-2"></i><%= link_to 'Back to list', tasks_path %>
+
+</div>
